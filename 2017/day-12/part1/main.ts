@@ -3,7 +3,7 @@ import fs from "fs";
 const programPipes: Record<number, number[]> = {};
 
 const data = fs
-  .readFileSync("2017/day-12/input.txt", "utf-8")
+  .readFileSync("2017/day-12/part1/input.txt", "utf-8")
   .trim()
   .split("\n");
 
