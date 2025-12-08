@@ -21,6 +21,8 @@ let beamIndexes = new Map<number, number>();
 
 beamIndexes.set(startIndex, 1);
 
+console.log("000-" + startLine);
+
 for (let i = 1; i < lines.length; i++) {
   let newIndexes = new Map<number, number>();
   const chars = [...lines[i]];
@@ -32,21 +34,22 @@ for (let i = 1; i < lines.length; i++) {
       newIndexes.set(key, value);
     } else {
       const left = newIndexes.get(key - 1);
-      const leftValue = (left ?? 0) + 1;
+      const leftValue = (left ?? 0) + value;
       newIndexes.set(key - 1, leftValue);
 
       const right = newIndexes.get(key + 1);
-      const rightValue = (right ?? 0) + 1;
+      const rightValue = (right ?? 0) + value;
       newIndexes.set(key + 1, rightValue);
     }
   });
 
-  const debugChars: string[] = [];
+  const debugChars: string[] = [i.toString().padStart(3, "0"), "-"];
 
   for (let j = 0; j < lines[i].length; j++) {
     const beam = newIndexes.get(j);
     if (beam) {
       debugChars.push(beam.toString());
+      // debugChars.push("|");
     } else {
       debugChars.push(chars[j]);
     }
