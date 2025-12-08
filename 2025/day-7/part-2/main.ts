@@ -31,7 +31,9 @@ for (let i = 1; i < lines.length; i++) {
     const char = chars[key];
 
     if (char === ".") {
-      newIndexes.set(key, value);
+      const old = newIndexes.get(key);
+      const newValue = (old ?? 0) + value;
+      newIndexes.set(key, newValue);
     } else {
       const left = newIndexes.get(key - 1);
       const leftValue = (left ?? 0) + value;
